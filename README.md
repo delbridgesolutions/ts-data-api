@@ -4,7 +4,7 @@ This project provides a TypeScript implementation inspired by the deprecated [At
 
 - The HTTP server supports both [JSON](https://en.wikipedia.org/wiki/JSON) and [EJSON](https://www.mongodb.com/docs/mongodb-shell/reference/ejson/) content types.
 - Endpoint request bodies mirror the structure of the [MongoDB Node.js Driver](https://mongodb.github.io/node-mongodb-native/) methods, with the addition of `dataSource`, `database`, and `collection` fields to specify the target, similar to the Atlas Data API.
-- For detailed usage examples, refer to the test files: `test/client.ts`, `test/custom/*`, and `test/default/*`.
+- For detailed usage examples and endpoints, refer to the: `test/client.ts`, `test/custom/*`, `test/default/*` or the [Endpoints documentation](./ENDPOINTS.md).
 
 ## Executing
 
