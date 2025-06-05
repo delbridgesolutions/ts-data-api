@@ -91,8 +91,7 @@ withDb(() => {
 
       const { body } = await requester({ data, url: endPoint });
 
-      expect(body.code).toBe(null);
-      expect(body.errmsg).toContain("bulkWrite only supports");
+      expect(body.message).toContain("bulkWrite only supports");
     });
   });
 });

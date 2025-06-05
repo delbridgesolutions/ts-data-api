@@ -4,13 +4,10 @@ import { z } from "zod";
 import * as M from "../../middlewares";
 import { dataSources } from "../../mdb";
 import { AnyBulkWriteOperation } from "mongodb";
+import { defaultSchema } from "./utils";
 
-const schema = z.object({
-  dataSource: z.string(),
-  database: z.string(),
-  collection: z.string(),
+const schema = defaultSchema.extend({
   operations: z.array(z.record(z.unknown())),
-  options: z.record(z.unknown()).optional(),
 });
 
 export const method = "post";

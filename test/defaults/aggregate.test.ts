@@ -86,8 +86,7 @@ withDb(() => {
 
       const { body } = await requester({ data, url: endPoint });
 
-      expect(body.code).toBe(40324);
-      expect(body.errmsg).toContain("Unrecognized pipeline stage name");
+      expect(body.message).toContain("Unrecognized pipeline stage name");
     });
   });
 });

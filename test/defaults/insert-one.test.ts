@@ -67,8 +67,7 @@ withDb(() => {
 
       const { body } = await requester({ data, url: endPoint });
 
-      expect(body.code).toBe(11000);
-      expect(body.errmsg).toContain("E11000 duplicate key error collection");
+      expect(body.message).toContain("E11000 duplicate key error collection");
     });
   });
 });

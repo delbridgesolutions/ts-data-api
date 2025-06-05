@@ -1,12 +1,16 @@
 import { z } from "zod";
 
-export const DataSourcesSchema = z
+export const DataSourcesObjectSchema = z
   .custom<{
     [key: string]: string;
   }>(
     (value: unknown): boolean =>
       typeof value === "string" ||
-      (typeof value === "object" && !Array.isArray(value))
+      (typeof value === "object" && !Array.isArray(value)),
+    {
+      message:
+        "Data Sources must be a stringified JSON or an object with string values.",
+    }
   )
   .transform(
     (value: string | { [key: string]: string }): { [key: string]: string } =>
@@ -14,8 +18,8 @@ export const DataSourcesSchema = z
   );
 
 const EnvsSchema = z.object({
-  APP_NAME: z.string().default("ts-data-api"),
-  DATA_SOURCES: DataSourcesSchema.default({
+  APP_NAME: z.string().default("delbridge-typescript-data-api"),
+  DATA_SOURCES: DataSourcesObjectSchema.default({
     local: "mongodb://127.0.0.1:27017",
   }),
   JWT_SECRET: z.string().default("something-secure"),

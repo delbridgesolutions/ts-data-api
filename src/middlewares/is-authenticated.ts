@@ -7,13 +7,13 @@ export const Errors = {
   noHeader: () => {
     return h3.createError({
       message: "Authorization header not provided",
-      status: 400,
+      status: 401,
     });
   },
   invalidToken: () => {
     return h3.createError({
       message: "Invalid Token",
-      status: 400,
+      status: 401,
     });
   },
 };

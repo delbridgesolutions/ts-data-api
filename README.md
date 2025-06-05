@@ -15,7 +15,7 @@ To run this application, ensure you have [Node.js](https://nodejs.org/en/downloa
 
 The application starts with the following default environment variable settings:
 
-- `APP_NAME=ts-data-api`
+- `APP_NAME=delbridge-typescript-data-api`
 - `DATA_SOURCES='{"local": "mongodb://127.0.0.1:27017"}'`
 - `JWT_SECRET=something-secure`
 - `SERVER_ADDRESS=127.0.0.1`
@@ -32,7 +32,7 @@ Here are example `curl` commands to test `insertOne` and `findOne` operations ag
 curl -s "http://127.0.0.1:8080/defaults/insertOne" \
   -X POST \
   -H "Content-Type: application/ejson" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjYxNzk3NDB9.TVPIeTj444jMifkd3r_T6jIACwnC86OhtsSjSYt7yV0" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDkwNjk3MDF9.aLgkBEzvsyDCRtpfAmIYxCxMI1ck9A4EFu6BipwARbM" \
   -d '{
     "dataSource": "local",
     "database": "test",
@@ -46,7 +46,7 @@ curl -s "http://127.0.0.1:8080/defaults/insertOne" \
 curl -s "http://127.0.0.1:8080/defaults/findOne" \
   -X POST \
   -H "Content-Type: application/ejson" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjYxNzk3NDB9.TVPIeTj444jMifkd3r_T6jIACwnC86OhtsSjSYt7yV0" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDkwNjk3MDF9.aLgkBEzvsyDCRtpfAmIYxCxMI1ck9A4EFu6BipwARbM" \
   -d '{
     "dataSource": "local",
     "database": "test",
@@ -163,7 +163,7 @@ curl -s "https://<atlas-data-api-base-url>/action/find" \
       }'
 
 # Delbridge TypeScript Data API
-curl -s "http://<ts-data-api-base-url>/defaults/find" \
+curl -s "http://<delbridge-typescript-data-api-base-url>/defaults/find" \
   -X POST \
   -H "Content-Type: application/ejson" \
   -H "Authorization: Bearer $TOKEN" \
@@ -195,7 +195,7 @@ The configuration for environment variables, including their management, parsing
 
   - Specifies the application name used in the [MongoDB Client](https://mongodb.github.io/node-mongodb-native/6.16/interfaces/MongoClientOptions.html#appName) connection.
   - This helps identify the source of operations when analyzing MongoDB queries, logs, and performance.
-  - _Default_: `ts-data-api`
+  - _Default_: `delbridge-typescript-data-api`
 
 - **`DATA_SOURCES`**
 
@@ -277,3 +277,27 @@ JSON: {
 }
 */
 ```
+
+## Creating Your Own JWT
+
+To create your own JSON Web Token (JWT), you can use the script provided in the file [./test/jwt.ts](./test/jwt.ts). Follow these steps to generate a JWT:
+
+1. Ensure you have the required dependencies installed in your project by running:
+
+   ```bash
+   npm install
+   ```
+
+2. Execute the following command in your terminal to run the script:
+
+   ```bash
+   npx ts-node ./test/jwt.ts
+   ```
+
+### Default Behavior
+
+By default, this script generates a JWT using the secret key specified in the `JWT_SECRET` environment variable. The payload of the token will be empty unless you modify the script to include additional data.
+
+### Customizing the JWT
+
+If you want to customize the payload or use a different secret, you can edit the script located at `./test/jwt.ts`. For example, you can add fields to the payload or change the signing algorithm as needed.

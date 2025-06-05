@@ -3,14 +3,11 @@ import { z } from "zod";
 
 import * as M from "../../middlewares";
 import { dataSources } from "../../mdb";
+import { defaultSchema } from "./utils";
 
-const schema = z.object({
-  dataSource: z.string(),
-  database: z.string(),
-  collection: z.string(),
+const schema = defaultSchema.extend({
   filter: z.record(z.unknown()),
   replacement: z.record(z.unknown()),
-  options: z.record(z.unknown()).optional(),
 });
 
 export const method = "post";

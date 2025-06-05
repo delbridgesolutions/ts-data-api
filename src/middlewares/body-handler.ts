@@ -11,8 +11,7 @@ export const Errors = {
   },
   wrongBody: (zodError: z.ZodError) => {
     return h3.createError({
-      cause: zodError.toString(),
-      message: "Body expected not provided",
+      message: `Body expected not provided: ${JSON.stringify(zodError.flatten().fieldErrors)}`,
       status: 400,
     });
   },

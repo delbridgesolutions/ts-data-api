@@ -1,7 +1,7 @@
 {
-  "name": "delbridge-ts-data-api",
+  "name": "delbridge-typescript-data-api",
   "version": "0.1.0",
-  "description": "Delbridge TypeScript Data API implementation for MongoDB",
+  "description": "Delbridge TypeScript Data API for MongoDB",
   "main": "./src/main.ts",
   "scripts": {
     "build": "npx tsc --project ./tsconfig.json",

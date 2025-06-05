@@ -1,7 +1,8 @@
 import { MongoClient } from "mongodb";
-import { z } from "zod";
 
 import { envs } from "../envs";
+
+export const dataSourcesNames = Object.keys(envs.DATA_SOURCES);
 
 export const dataSources = Object.entries(envs.DATA_SOURCES).reduce<{
   [key: string]: MongoClient;

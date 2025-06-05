@@ -13,10 +13,10 @@ export const app = h3.createApp({
 app.use(routerCustom);
 app.use(routerDefaults);
 app.use(
-  "/*",
+  "/",
   h3.defineEventHandler({
     handler: async () => ({
-      message: "TypeScript Data API",
+      message: "Delbridge TypeScript Data API",
       now: new Date().toISOString(),
     }),
   })

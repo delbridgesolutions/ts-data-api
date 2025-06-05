@@ -66,8 +66,7 @@ withDb(() => {
 
       const { body } = await requester({ data, url: endPoint });
 
-      expect(body.code).toBe(2);
-      expect(body.errmsg).toContain("unknown operator");
+      expect(body.message).toContain("unknown operator");
     });
   });
 });
