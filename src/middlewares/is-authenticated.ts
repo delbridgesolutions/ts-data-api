@@ -1,5 +1,5 @@
 import * as h3 from "h3";
-import { verify } from "jsonwebtoken";
+import { verify, VerifyErrors } from "jsonwebtoken";
 
 import { envs } from "../envs";
 
@@ -10,9 +10,9 @@ export const Errors = {
       status: 401,
     });
   },
-  invalidToken: () => {
+  invalidToken: ({ message }: VerifyErrors) => {
     return h3.createError({
-      message: "Invalid Token",
+      message: `Invalid Token: ${message}`,
       status: 401,
     });
   },
@@ -28,6 +28,6 @@ export const isAuthenticated: IsAuthenticated = (event) => {
   const token = authorization.replace("Bearer ", "");
 
   verify(token, envs.JWT_SECRET, (err) => {
-    if (err != null) throw Errors.invalidToken();
+    if (err != null) throw Errors.invalidToken(err);
   });
 };

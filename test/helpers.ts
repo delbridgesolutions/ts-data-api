@@ -46,6 +46,7 @@ type Requester = (args: {
   contentType?: "application/json" | "application/ejson";
   data?: object;
   url: string;
+  token?: string;
 }) => Promise<{
   body: any;
   status: number;
@@ -61,7 +62,10 @@ export const requester: Requester = async (args) => {
   return handler({
     method: "POST",
     path: args.url,
-    headers: { Authorization: `Bearer ${token}`, "content-type": contentType },
+    headers: {
+      Authorization: `Bearer ${args.token}`,
+      "content-type": contentType,
+    },
     body: serializer(args.data),
   }).then(({ body, status }) => ({
     body: parser(body as unknown as string),
