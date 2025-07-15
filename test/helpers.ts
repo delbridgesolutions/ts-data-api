@@ -63,7 +63,7 @@ export const requester: Requester = async (args) => {
     method: "POST",
     path: args.url,
     headers: {
-      Authorization: `Bearer ${args.token}`,
+      Authorization: `Bearer ${args.token ?? token}`,
       "content-type": contentType,
     },
     body: serializer(args.data),
