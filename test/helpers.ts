@@ -66,7 +66,7 @@ export const requester: Requester = async (args) => {
       Authorization: `Bearer ${args.token ?? token}`,
       "content-type": contentType,
     },
-    body: serializer(args.data),
+    body: args.data ? serializer(args.data) : undefined,
   }).then(({ body, status }) => ({
     body: parser(body as unknown as string),
     status,

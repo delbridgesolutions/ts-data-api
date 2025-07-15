@@ -36,4 +36,23 @@ withDb(() => {
       expect(userFromCollection?.born).toStrictEqual(user.born.toISOString());
     });
   });
+
+  describe("Body Handler Errors", () => {
+    test("Should get an error when a body is not provided", async () => {
+      const { body, status } = await requester({ url: endPoint });
+
+      expect(status).toBe(400);
+      expect(body.message).toBe("Body not provided");
+    });
+
+    test("Should get an error when a body with the wrong format is provided", async () => {
+      const { body, status } = await requester({
+        url: endPoint,
+        data: { document: { invalidField: "invalidValue" } },
+      });
+
+      expect(status).toBe(400);
+      expect(body.message).toContain("Body expected not provided");
+    });
+  });
 });
